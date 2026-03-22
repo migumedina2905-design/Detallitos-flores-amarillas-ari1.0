@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas - Proyecto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <span class="dev-name">ALEX DEV</span>
+        </header>
+
+        <main class="card">
+            <h1 class="card-title">Flores Amarillas</h1>
+            
+            <div class="image-box">
+                <img src="https://i.imgur.com/8N6H7yX.png" alt="Árbol Amarillo" class="main-img">
+            </div>
+
+            <div class="counter-container">
+                <p class="counter-label">Mi amor por ti comenzó hace...</p>
+                <div id="clock" class="clock-display">Iniciando sistemas...</div>
+            </div>
+        </main>
+
+        <section class="code-editor">
+            <div class="editor-header">Style.css</div>
+            <pre><code><span class="selector">.Flores_Amarillas</span> {
+  position: <span class="keyword">absolute</span>;
+  width: <span class="number">90%</span>;
+  font-size: <span class="number">2rem</span>;
+  font-family: <span class="string">"Te Amo"</span>;
+  height: <span class="variable">var(--letter-love)</span>;
+  transform: <span class="keyword">translateX(-50%)</span>;
+  background: <span class="variable">var(--letter)</span>;
+}</code></pre>
+        </section>
+    </div>
+
+    <script>
+        // Fecha de inicio: 31 de Octubre de 2024 (Mes 9 porque JS cuenta desde 0)
+        // Esto da exactamente 1 año, 4 meses y 21 días al 21 de marzo de 2026.
+        const anniversaryDate = new Date(2024, 9, 31, 0, 0, 0);
+
+        function updateClock() {
+            const now = new Date();
+            const diff = now - anniversaryDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('clock').innerHTML = 
+                `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+  </html>
