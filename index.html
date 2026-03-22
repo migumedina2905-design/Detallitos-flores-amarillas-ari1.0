@@ -6,48 +6,63 @@
     <title>Para mi niña hermosa</title>
     <style>
         :root {
-            --pink-bg: #ff007f;
-            --dark-card: #121212;
-            --text-color: #ffffff;
+            --space-black: #050505;
+            --accent-pink: #ff007f;
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, var(--pink-bg) 0%, #4a0040 100%);
+            background: var(--space-black);
+            /* EFECTO DE ESTRELLAS */
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 550px 550px, 350px 350px;
+            animation: stars 100s linear infinite;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            color: var(--text-color);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        @keyframes stars {
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 550px 550px, 350px 700px; }
         }
 
         .header {
             margin-top: 30px;
             font-weight: bold;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
+            color: var(--accent-pink);
+            text-shadow: 0 0 15px var(--accent-pink);
         }
 
         .main-card {
-            background: #fffdf5;
-            width: 90%;
-            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            width: 88%;
+            max-width: 380px;
             border-radius: 25px;
             margin-top: 20px;
             padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            color: #333;
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.4);
+            color: #222;
             text-align: center;
+            backdrop-filter: blur(8px);
         }
 
         .video-container {
             width: 100%;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: black;
+            line-height: 0;
         }
 
         .counter-section {
@@ -55,35 +70,35 @@
         }
 
         .counter-title {
-            color: #888;
-            font-size: 0.9rem;
+            color: #777;
+            font-size: 0.85rem;
             margin-bottom: 5px;
         }
 
         .counter-timer {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #222;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #000;
         }
 
         .code-block {
-            background: var(--dark-card);
-            width: 90%;
-            max-width: 400px;
+            background: #121212;
+            width: 85%;
+            max-width: 360px;
             border-radius: 20px;
-            margin: 20px 0;
-            padding: 20px;
+            margin: 25px 0;
+            padding: 18px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
-            text-align: left;
-            position: relative;
+            font-size: 0.8rem;
+            border: 1px solid #333;
         }
 
         .code-header {
-            color: #666;
+            color: #444;
             text-align: right;
-            margin-bottom: 10px;
             font-size: 0.7rem;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #222;
         }
 
         .code-content { color: #d4d4d4; }
@@ -96,18 +111,14 @@
             top: 20px;
             right: 20px;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid white;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1.5px solid var(--accent-pink);
             color: white;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
             cursor: pointer;
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 0 10px var(--accent-pink);
         }
     </style>
 </head>
@@ -122,68 +133,60 @@
     <div class="header">TU PUCHAMON 🦖 🫀</div>
 
     <div class="main-card">
-        <h3 style="margin-top: 0; color: #555;">Flores Amarillas</h3>
+        <h3 style="margin: 0 0 15px 0; color: #444; font-size: 1rem;">Flores Amarillas</h3>
         
         <div class="video-container">
             <video width="100%" autoplay loop muted playsinline>
                 <source src="video.mp4" type="video/mp4">
-                Tu navegador no soporta videos.
             </video>
         </div>
 
         <div class="counter-section">
             <div class="counter-title">Mi amor por ti comenzó hace...</div>
-            <div id="contador" class="counter-timer">Cargando tiempo...</div>
+            <div id="contador" class="counter-timer">Calculando...</div>
         </div>
     </div>
 
     <div class="code-block">
         <div class="code-header">style.css</div>
         <div class="code-content">
-            <span class="keyword">.Flores_Amarillas</span> {<br>
-            &nbsp;&nbsp;<span class="property">position</span>: <span class="value">absolute</span>;<br>
-            &nbsp;&nbsp;<span class="property">width</span>: <span class="value">90%</span>;<br>
-            &nbsp;&nbsp;<span class="property">font-family</span>: <span class="value">"Te Amo"</span>;<br>
-            &nbsp;&nbsp;<span class="property">transform</span>: <span class="value">translateX(-50%)</span>;<br>
-            &nbsp;&nbsp;<span class="property">background</span>: <span class="value">var(--letter)</span>;<br>
+            <span class="keyword">.Vacio_Espacial</span> {<br>
+            &nbsp;&nbsp;<span class="property">background</span>: <span class="value">#000</span>;<br>
+            &nbsp;&nbsp;<span class="property">status</span>: <span class="value">"Te Amo"</span>;<br>
+            &nbsp;&nbsp;<span class="property">puchamon</span>: <span class="value">active</span>;<br>
             }
         </div>
     </div>
 
     <script>
-        // Configuración del contador (31 de Octubre de 2024)
+        // FECHA DE INICIO: 31 de Octubre de 2024
         const anniversaryDate = new Date(2024, 9, 31, 0, 0, 0);
 
         function updateCounter() {
             const now = new Date();
             const diff = now - anniversaryDate;
-
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
             document.getElementById('contador').innerHTML = 
-                `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
+                `${days} días ${hours}h ${minutes}m ${seconds}s`;
         }
-
         setInterval(updateCounter, 1000);
         updateCounter();
 
-        // Control de música
         function controlMusica() {
             const audio = document.getElementById('miMusica');
             const btn = document.getElementById('btnMusica');
             if (audio.paused) {
                 audio.play();
                 btn.innerHTML = "⏸️";
-                btn.style.background = "rgba(255, 0, 127, 0.6)";
             } else {
                 audio.pause();
                 btn.innerHTML = "🎵";
-                btn.style.background = "rgba(255, 255, 255, 0.3)";
             }
         }
     </script>
 </body>
 </html>
+        
