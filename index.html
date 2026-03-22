@@ -3,85 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flores Amarillas - Proyecto</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Para mi niña hermosa</title>
+    <style>
+        :root {
+            --pink-bg: #ff007f;
+            --dark-card: #121212;
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, var(--pink-bg) 0%, #4a0040 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+
+        .header {
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .main-card {
+            background: #fffdf5;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 25px;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: #333;
+            text-align: center;
+        }
+
+        .video-container {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .counter-section {
+            margin-top: 20px;
+        }
+
+        .counter-title {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .counter-timer {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #222;
+        }
+
+        .code-block {
+            background: var(--dark-card);
+            width: 90%;
+            max-width: 400px;
+            border-radius: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            text-align: left;
+            position: relative;
+        }
+
+        .code-header {
+            color: #666;
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 0.7rem;
+        }
+
+        .code-content { color: #d4d4d4; }
+        .keyword { color: #c586c0; }
+        .property { color: #9cdcfe; }
+        .value { color: #ce9178; }
+
+        #btnMusica {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid white;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <span class="dev-name">TU PUCHAMON🦕🫀</span>
-        </header>
 
-        <main class="card">
-            <h1 class="card-title">Flores Amarillas</h1>
-            
-            <div class="image-box">
-                <img src="https://raw.githubusercontent.com/MiguMedina2905-design/Detallitos-flores-amarillas-ari/main/arbol.png">
-            </div>
+    <audio id="miMusica" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
 
-            <div class="counter-container">
-                <p class="counter-label">Mi amor por ti comenzó hace...</p>
-                <div id="clock" class="clock-display">Iniciando sistemas...</div>
-            </div>
-        </main>
+    <button id="btnMusica" onclick="controlMusica()">🎵</button>
 
-        <section class="code-editor">
-            <div class="editor-header">Style.css</div>
-            <pre><code><span class="selector">.Flores_Amarillas</span> {
-  position: <span class="keyword">absolute</span>;
-  width: <span class="number">90%</span>;
-  font-size: <span class="number">2rem</span>;
-  font-family: <span class="string">"Te Amo"</span>;
-  height: <span class="variable">var(--letter-love)</span>;
-  transform: <span class="keyword">translateX(-50%)</span>;
-  background: <span class="variable">var(--letter)</span>;
-}</code></pre>
-        </section>
+    <div class="header">TU PUCHAMON 🦖 🫀</div>
+
+    <div class="main-card">
+        <h3 style="margin-top: 0; color: #555;">Flores Amarillas</h3>
+        
+        <div class="video-container">
+            <video width="100%" autoplay loop muted playsinline>
+                <source src="video.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+        </div>
+
+        <div class="counter-section">
+            <div class="counter-title">Mi amor por ti comenzó hace...</div>
+            <div id="contador" class="counter-timer">Cargando tiempo...</div>
+        </div>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">style.css</div>
+        <div class="code-content">
+            <span class="keyword">.Flores_Amarillas</span> {<br>
+            &nbsp;&nbsp;<span class="property">position</span>: <span class="value">absolute</span>;<br>
+            &nbsp;&nbsp;<span class="property">width</span>: <span class="value">90%</span>;<br>
+            &nbsp;&nbsp;<span class="property">font-family</span>: <span class="value">"Te Amo"</span>;<br>
+            &nbsp;&nbsp;<span class="property">transform</span>: <span class="value">translateX(-50%)</span>;<br>
+            &nbsp;&nbsp;<span class="property">background</span>: <span class="value">var(--letter)</span>;<br>
+            }
+        </div>
     </div>
 
     <script>
-        // Fecha de inicio: 31 de Octubre de 2024 (Mes 9 porque JS cuenta desde 0)
-        // Esto da exactamente 1 año, 4 meses y 21 días al 21 de marzo de 2026.
+        // Configuración del contador (31 de Octubre de 2024)
         const anniversaryDate = new Date(2024, 9, 31, 0, 0, 0);
 
-        function updateClock() {
+        function updateCounter() {
             const now = new Date();
             const diff = now - anniversaryDate;
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('clock').innerHTML = 
+            document.getElementById('contador').innerHTML = 
                 `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
         }
 
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
-    <script>
-function controlMusica() {
-    const audio = document.getElementById('miMusica');
-    const btn = document.getElementById('btnMusica');
-    if (audio.paused) {
-        audio.play();
-        btn.innerHTML = "⏸️";
-        btn.style.background = "rgba(255, 0, 127, 0.5)";
-    } else {
-        audio.pause();
-        btn.innerHTML = "🎵";
-        btn.style.background = "rgba(255,255,255,0.2)";
-    }
-}
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // Control de música
+        function controlMusica() {
+            const audio = document.getElementById('miMusica');
+            const btn = document.getElementById('btnMusica');
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "⏸️";
+                btn.style.background = "rgba(255, 0, 127, 0.6)";
+            } else {
+                audio.pause();
+                btn.innerHTML = "🎵";
+                btn.style.background = "rgba(255, 255, 255, 0.3)";
+            }
+        }
     </script>
 </body>
-<audio id="miMusica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-</audio>
-
-<button id="btnMusica" onclick="controlMusica()" style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(255,255,255,0.2); border: 1px solid white; color: white; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
-    🎵
-</button>
-    
-
+</html>
