@@ -7,159 +7,145 @@
     <style>
         :root {
             --space-black: #050505;
+            --yellow-flower: #ffcc00;
             --accent-pink: #ff007f;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: var(--space-black);
-            /* EFECTO DE ESTRELLAS */
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-            background-size: 550px 550px, 350px 350px;
-            animation: stars 100s linear infinite;
+            overflow: hidden; /* Mantiene las flores en su universo */
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             color: white;
-            overflow-x: hidden;
         }
 
-        @keyframes stars {
-            from { background-position: 0 0, 0 0; }
-            to { background-position: 550px 550px, 350px 700px; }
+        /* ANIMACIÓN DE FONDO: ESPACIO Y FLORES */
+        .universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1a00 0%, #000 70%);
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 20px;
+            filter: drop-shadow(0 0 5px var(--yellow-flower));
+            animation: float 15s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg) translateX(0); }
+            100% { transform: translateY(-10vh) rotate(360deg) translateX(50px); }
+        }
+
+        /* TARJETA PRINCIPAL */
+        .main-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            width: 85%;
+            max-width: 350px;
+            border-radius: 30px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 204, 0, 0.2);
+            z-index: 10;
         }
 
         .header {
-            margin-top: 30px;
             font-weight: bold;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             letter-spacing: 4px;
-            text-transform: uppercase;
             color: var(--accent-pink);
             text-shadow: 0 0 15px var(--accent-pink);
+            margin-bottom: 20px;
         }
 
-        .main-card {
-            background: rgba(255, 255, 255, 0.95);
-            width: 88%;
-            max-width: 380px;
-            border-radius: 25px;
-            margin-top: 20px;
-            padding: 20px;
-            box-shadow: 0 0 25px rgba(255, 0, 127, 0.4);
-            color: #222;
-            text-align: center;
-            backdrop-filter: blur(8px);
+        .sunflower-main {
+            font-size: 60px;
+            margin: 10px 0;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .video-container {
-            width: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            background: black;
-            line-height: 0;
-        }
-
-        .counter-section {
-            margin-top: 20px;
-        }
-
-        .counter-title {
-            color: #777;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.1); filter: brightness(1.3) drop-shadow(0 0 20px gold); }
         }
 
         .counter-timer {
             font-weight: 800;
             font-size: 1.1rem;
-            color: #000;
+            color: var(--yellow-flower);
+            margin-top: 15px;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
         }
 
-        .code-block {
-            background: #121212;
-            width: 85%;
-            max-width: 360px;
-            border-radius: 20px;
-            margin: 25px 0;
-            padding: 18px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.8rem;
-            border: 1px solid #333;
-        }
-
-        .code-header {
-            color: #444;
-            text-align: right;
-            font-size: 0.7rem;
-            margin-bottom: 8px;
-            border-bottom: 1px solid #222;
-        }
-
-        .code-content { color: #d4d4d4; }
-        .keyword { color: #c586c0; }
-        .property { color: #9cdcfe; }
-        .value { color: #ce9178; }
-
+        /* BOTÓN DE MÚSICA ESTILO MINIMALISTA */
         #btnMusica {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1.5px solid var(--accent-pink);
-            color: white;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
+            bottom: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--yellow-flower);
+            color: var(--yellow-flower);
+            border-radius: 50px;
+            padding: 10px 20px;
             cursor: pointer;
-            box-shadow: 0 0 10px var(--accent-pink);
+            z-index: 100;
+            font-weight: bold;
+            transition: 0.3s;
         }
+
+        #btnMusica:hover { background: var(--yellow-flower); color: black; }
+
     </style>
 </head>
 <body>
+
+    <div class="universe" id="universe"></div>
 
     <audio id="miMusica" loop>
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="btnMusica" onclick="controlMusica()">🎵</button>
-
     <div class="header">TU PUCHAMON 🦖 🫀</div>
 
     <div class="main-card">
-        <h3 style="margin: 0 0 15px 0; color: #444; font-size: 1rem;">Flores Amarillas</h3>
-        
-        <div class="video-container">
-            <video width="100%" autoplay loop muted playsinline>
-                <source src="video.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="counter-section">
-            <div class="counter-title">Mi amor por ti comenzó hace...</div>
-            <div id="contador" class="counter-timer">Calculando...</div>
-        </div>
+        <div class="sunflower-main">🌻</div>
+        <div style="font-size: 0.9rem; color: #ccc;">Feliz día de las Flores Amarillas</div>
+        <div id="contador" class="counter-timer">Calculando...</div>
+        <p style="font-size: 0.8rem; color: #aaa; margin-top: 15px;">"Eres la luz en mi universo"</p>
     </div>
 
-    <div class="code-block">
-        <div class="code-header">style.css</div>
-        <div class="code-content">
-            <span class="keyword">.Vacio_Espacial</span> {<br>
-            &nbsp;&nbsp;<span class="property">background</span>: <span class="value">#000</span>;<br>
-            &nbsp;&nbsp;<span class="property">status</span>: <span class="value">"Te Amo"</span>;<br>
-            &nbsp;&nbsp;<span class="property">puchamon</span>: <span class="value">active</span>;<br>
-            }
-        </div>
-    </div>
+    <button id="btnMusica" onclick="controlMusica()">PONER MÚSICA 🎵</button>
 
     <script>
-        // FECHA DE INICIO: 31 de Octubre de 2024
+        // GENERADOR DE FLORES EN EL ESPACIO
+        const universe = document.getElementById('universe');
+        const flowerIcons = ['🌻', '✨', '⭐', '💛'];
+
+        for (let i = 0; i < 40; i++) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.innerHTML = flowerIcons[Math.floor(Math.random() * flowerIcons.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            flower.style.animationDelay = (Math.random() * 10) + 's';
+            flower.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            universe.appendChild(flower);
+        }
+
+        // CONTADOR (31 de Octubre de 2024)
         const anniversaryDate = new Date(2024, 9, 31, 0, 0, 0);
 
         function updateCounter() {
@@ -170,7 +156,7 @@
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
             document.getElementById('contador').innerHTML = 
-                `${days} días ${hours}h ${minutes}m ${seconds}s`;
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
         setInterval(updateCounter, 1000);
         updateCounter();
@@ -180,13 +166,12 @@
             const btn = document.getElementById('btnMusica');
             if (audio.paused) {
                 audio.play();
-                btn.innerHTML = "⏸️";
+                btn.innerHTML = "PAUSAR MÚSICA ⏸️";
             } else {
                 audio.pause();
-                btn.innerHTML = "🎵";
+                btn.innerHTML = "PONER MÚSICA 🎵";
             }
         }
     </script>
 </body>
-</html>
-        
+</html>                
